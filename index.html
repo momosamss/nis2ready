@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NIS2Ready — Conformité NIS2 pour PME</title>
+  <meta name="description" content="Évaluez votre conformité à la directive NIS2 et générez un rapport PDF officiel en moins de 10 minutes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- =====================================================================
+       EN-TÊTE GLOBAL (logo + barre de progression multi-étapes)
+       ===================================================================== -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">🛡️</span>
+        <span class="logo-text">NIS2<strong>Ready</strong></span>
+      </div>
+      <!-- Barre de progression des étapes -->
+      <nav class="steps-nav" aria-label="Étapes de l'évaluation">
+        <div class="step-item" id="step-nav-1">
+          <div class="step-dot">1</div>
+          <span class="step-label">Entreprise</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-item" id="step-nav-2">
+          <div class="step-dot">2</div>
+          <span class="step-label">Évaluation</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-item" id="step-nav-3">
+          <div class="step-dot">3</div>
+          <span class="step-label">Résultats</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-item" id="step-nav-4">
+          <div class="step-dot">📄</div>
+          <span class="step-label">Rapport PDF</span>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="app-main">
+
+    <!-- =================================================================
+         ÉTAPE 1 — IDENTIFICATION DE L'ENTREPRISE
+         ================================================================= -->
+    <section class="step-screen active" id="screen-step1" aria-label="Étape 1 : Identification">
+      <div class="container container--narrow">
+
+        <!-- Bandeau démo rapide -->
+        <div class="demo-banner">
+          <div class="demo-banner-text">
+            <strong>🎯 Démo instantanée</strong>
+            <span>Voir un rapport complet avec des données d'exemple réalistes.</span>
+          </div>
+          <button type="button" class="btn btn-demo" id="btn-demo">
+            Voir le rapport démo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:18px;height:18px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+
+        <div class="screen-hero">
+          <span class="badge badge-blue">Étape 1 sur 4</span>
+          <h1>Identifiez votre entreprise</h1>
+          <p class="lead">Aucun compte requis. Vos données restent dans votre navigateur et servent uniquement à personnaliser votre rapport.</p>
+        </div>
+
+        <form id="form-company" class="card form-card" novalidate>
+          <div class="form-grid">
+
+            <div class="form-group form-group--full">
+              <label for="company-name" class="form-label">Nom de l'entreprise <span class="required">*</span></label>
+              <input type="text" id="company-name" class="form-control" placeholder="Ex : Acme Technologies SAS" required />
+              <span class="form-error" id="err-company-name"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="sector" class="form-label">Secteur d'activité <span class="required">*</span></label>
+              <select id="sector" class="form-control" required>
+                <option value="">— Sélectionner —</option>
+                <optgroup label="Secteurs hautement critiques">
+                  <option value="energie">Énergie</option>
+                  <option value="transports">Transports</option>
+                  <option value="banque">Secteur bancaire</option>
+                  <option value="marches-financiers">Infrastructures des marchés financiers</option>
+                  <option value="sante">Santé</option>
+                  <option value="eau-potable">Eau potable</option>
+                  <option value="eaux-usees">Eaux usées</option>
+                  <option value="infra-numerique">Infrastructures numériques</option>
+                  <option value="gestion-tic">Gestion des services TIC</option>
+                  <option value="admin-publique">Administrations publiques</option>
+                  <option value="espace">Espace</option>
+                </optgroup>
+                <optgroup label="Secteurs critiques">
+                  <option value="poste-courrier">Services postaux et de courrier</option>
+                  <option value="gestion-dechets">Gestion des déchets</option>
+                  <option value="chimie">Produits chimiques</option>
+                  <option value="alimentation">Alimentation</option>
+                  <option value="fabrication">Fabrication industrielle</option>
+                  <option value="fournisseurs-num">Fournisseurs numériques</option>
+                  <option value="recherche">Organismes de recherche</option>
+                </optgroup>
+              </select>
+              <span class="form-error" id="err-sector"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="employees" class="form-label">Nombre de salariés <span class="required">*</span></label>
+              <select id="employees" class="form-control" required>
+                <option value="">— Sélectionner —</option>
+                <option value="small">&lt; 50 salariés</option>
+                <option value="medium">50 à 249 salariés</option>
+                <option value="large">250 salariés et plus</option>
+              </select>
+              <span class="form-error" id="err-employees"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="revenue" class="form-label">Chiffre d'affaires annuel <span class="required">*</span></label>
+              <select id="revenue" class="form-control" required>
+                <option value="">— Sélectionner —</option>
+                <option value="small">&lt; 10 M€</option>
+                <option value="medium">10 M€ à 50 M€</option>
+                <option value="large">&gt; 50 M€</option>
+              </select>
+              <span class="form-error" id="err-revenue"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="responsible-name" class="form-label">Nom du responsable <span class="required">*</span></label>
+              <input type="text" id="responsible-name" class="form-control" placeholder="Ex : Jean Dupont" required />
+              <span class="form-error" id="err-responsible-name"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="responsible-role" class="form-label">Fonction du responsable</label>
+              <input type="text" id="responsible-role" class="form-control" placeholder="Ex : Dirigeant, DSI, RSSI" />
+            </div>
+
+            <div class="form-group form-group--full">
+              <label for="eval-date" class="form-label">Date d'évaluation</label>
+              <input type="date" id="eval-date" class="form-control" readonly />
+            </div>
+
+          </div>
+
+          <!-- Encart NIS2 informatif -->
+          <div class="info-box">
+            <span class="info-icon">ℹ️</span>
+            <div>
+              <strong>Pourquoi ces informations ?</strong>
+              <p>La directive NIS2 s'applique différemment selon votre secteur et votre taille. Ces données permettent de définir votre statut réglementaire (Entité Essentielle ou Importante) dans le rapport PDF.</p>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-lg" id="btn-start-eval">
+              Commencer l'évaluation
+              <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- =================================================================
+         ÉTAPE 2 — ÉVALUATION DES 10 DOMAINES NIS2
+         ================================================================= -->
+    <section class="step-screen" id="screen-step2" aria-label="Étape 2 : Évaluation NIS2">
+      <div class="container container--medium">
+
+        <!-- En-tête de l'évaluation -->
+        <div class="eval-header">
+          <div class="eval-meta">
+            <span class="badge badge-blue">Étape 2 sur 4</span>
+            <h1>Évaluation des 10 domaines NIS2</h1>
+            <p class="lead">Répondez honnêtement. En cas de doute, choisissez "Non". Le rapport indiquera les points à améliorer.</p>
+          </div>
+          <!-- Progression globale de l'évaluation -->
+          <div class="eval-progress-card card">
+            <div class="eval-progress-label">
+              <span id="eval-progress-text">0 / 30 réponses</span>
+              <span id="eval-live-score" class="live-score">Score : 0%</span>
+            </div>
+            <div class="progress-bar-wrapper">
+              <div class="progress-bar-fill" id="eval-progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conteneur des domaines — rempli dynamiquement par app.js -->
+        <div id="domains-container"></div>
+
+        <div class="eval-actions">
+          <button class="btn btn-outline" id="btn-back-step1">← Retour</button>
+          <button class="btn btn-primary btn-lg" id="btn-to-results">
+            Voir mes résultats
+            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =================================================================
+         ÉTAPE 3 — RÉSULTATS ET APERÇU DU RAPPORT
+         ================================================================= -->
+    <section class="step-screen" id="screen-step3" aria-label="Étape 3 : Résultats">
+      <div class="container container--medium">
+
+        <div class="screen-hero">
+          <span class="badge badge-blue">Étape 3 sur 4</span>
+          <h1>Votre niveau de conformité NIS2</h1>
+        </div>
+
+        <!-- Jauge circulaire + score -->
+        <div class="results-hero card">
+          <div class="gauge-section">
+            <!-- SVG de la jauge circulaire animée -->
+            <div class="gauge-wrapper">
+              <svg class="gauge-svg" viewBox="0 0 200 200" aria-hidden="true">
+                <circle class="gauge-bg" cx="100" cy="100" r="80" />
+                <circle class="gauge-fill" id="gauge-fill-circle" cx="100" cy="100" r="80"
+                  stroke-dasharray="502.65" stroke-dashoffset="502.65" />
+              </svg>
+              <div class="gauge-center">
+                <span class="gauge-percent" id="gauge-percent-text">0%</span>
+                <span class="gauge-label">conforme</span>
+              </div>
+            </div>
+            <div class="gauge-info">
+              <div class="status-badge-large" id="results-status-badge">—</div>
+              <p class="status-description" id="results-status-desc"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tableau des 10 domaines -->
+        <div class="card results-table-card">
+          <h2 class="card-title">Détail par domaine (Article 21)</h2>
+          <div class="results-table-wrapper">
+            <table class="results-table" id="results-table">
+              <thead>
+                <tr>
+                  <th>Domaine</th>
+                  <th>Score</th>
+                  <th>Niveau</th>
+                </tr>
+              </thead>
+              <tbody id="results-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Points forts et actions prioritaires -->
+        <div class="results-insights-grid">
+          <div class="card insights-card insights-strengths">
+            <h2 class="card-title">✅ Points forts</h2>
+            <ul class="insights-list" id="results-strengths"></ul>
+          </div>
+          <div class="card insights-card insights-actions">
+            <h2 class="card-title">🚨 Actions prioritaires</h2>
+            <ul class="insights-list" id="results-actions"></ul>
+          </div>
+        </div>
+
+        <!-- CTA Téléchargement PDF -->
+        <div class="card pdf-cta-card">
+          <div class="pdf-cta-text">
+            <h2>Votre rapport PDF officiel est prêt</h2>
+            <p>5 pages professionnelles avec score, détail des domaines et plan d'action priorisé.</p>
+          </div>
+          <div class="pdf-cta-action">
+            <button class="btn btn-pdf" id="btn-generate-pdf">
+              <span class="btn-pdf-icon">📄</span>
+              <span class="btn-pdf-label">Télécharger mon rapport PDF officiel</span>
+              <span class="btn-pdf-spinner hidden" id="pdf-spinner">
+                <svg class="spinner-svg" viewBox="0 0 50 50"><circle class="spinner-path" cx="25" cy="25" r="20"/></svg>
+              </span>
+            </button>
+            <p class="pdf-cta-sub">Document daté et signé — présentable à vos clients, assureurs et à l'ANSSI</p>
+          </div>
+        </div>
+
+        <div class="eval-actions">
+          <button class="btn btn-outline" id="btn-back-step2">← Modifier mes réponses</button>
+          <button class="btn btn-secondary" id="btn-restart">Recommencer une évaluation</button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       OVERLAY DE CHARGEMENT (spinner lors de génération PDF)
+       ===================================================================== -->
+  <div class="loading-overlay hidden" id="loading-overlay" role="status" aria-live="polite">
+    <div class="loading-card">
+      <svg class="spinner-svg spinner-lg" viewBox="0 0 50 50"><circle class="spinner-path" cx="25" cy="25" r="20"/></svg>
+      <p class="loading-text" id="loading-text">Génération de votre rapport PDF en cours…</p>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       BIBLIOTHÈQUE jsPDF (CDN officiel)
+       ===================================================================== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
